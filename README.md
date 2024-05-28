@@ -1,45 +1,84 @@
-# 🐺 QA Wolf Take Home Assignment
 
-Welcome to the QA Wolf take home assignment for our [QA Engineer](https://www.notion.so/qawolf/QA-Wolf-QA-Engineer-Remote-156203a1e476459ea5e6ffca972d0efe) role! We appreciate your interest and look forward to seeing what you come up with.
+# Hacker News Scraper
 
-## Instructions
+This project is a Node.js script that fetches the top stories from Hacker News and saves them to a CSV file. It uses the Hacker News API to get the latest stories and Playwright for web scraping. The script can be customized to fetch a specified number of top stories and save them to a specified CSV file.
 
-This assignment has two questions as outlined below. When you are done, send [qa-hiring@qawolf.com](mailto:qa-hiring@qawolf.com) a link to a zip file of this folder on Google Drive. Additionally, please include your work location (Country/State) in the email.
+## Features
 
-### Question 1
+- Fetches top stories from Hacker News.
+- Saves story details (title, URL, author, score, comments) to a CSV file.
+- Allows customization of the number of stories and output file name through command-line arguments.
+- Includes unit tests using Mocha and Chai.
+- Mocks API responses using Nock for reliable testing.
 
-In this assignment, you will create a basic script on [Hacker News](https://news.ycombinator.com/) using JavaScript and Microsoft's [Playwright](https://playwright.dev/) framework.
+## Installation
 
-1. Install node modules by running `npm i`.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/hacker-news-scraper.git
+   cd hacker-news-scraper
+   ```
 
-2. Edit the `index.js` file in this project to go to [Hacker News](https://news.ycombinator.com/) and save the title and URL of the top 10 articles to a CSV file. You can run your script with the `node index.js` command.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Note that you are welcome to update Playwright or install other packages as you see fit.
+## Usage
 
-### Question 2
+### Running the Script
 
-Why do you want to work at QA Wolf? Please record a short, ~1 min, video with your answer and post a link in `why_qa_wolf.txt` (Please ensure your video is not private)
+To run the script, use the following command:
 
-## Frequently Asked Questions
+```bash
+node index.js
+```
 
-### What is your hiring process? When will I hear about next steps?
+By default, the script fetches the top 10 stories and saves them to `hackernewsTopTen.csv`. You can customize these options using command-line arguments:
 
-This take home assignment is the first step in our hiring process, followed by a final round interview if it goes well. **We review every take home assignment submission and promise to get back to you either way within one week (usually sooner).** The only caveat is if we are out of the office, in which case we will get back to you when we return. If it has been more than one week and you have not heard from us, please do follow up.
+- **Number of stories**: Use the `-n` or `--number` option to specify the number of top stories to fetch.
+- **Output file**: Use the `-o` or `--output` option to specify the name of the output CSV file.
 
-The final round interview is a 2-hour technical work session that reflects what it is like to work here. We provide a $100 stipend for your time for the final round interview regardless of how it goes. After that, there may be a short chat with our director about your experience and the role.
+Example:
 
-Our hiring process is rolling where we review candidates until we have filled our openings. If there are no openings left, we will keep your contact information on file and reach out when we are hiring again.
+```bash
+node index.js --number 15 --output top15Articles.csv
+```
 
-### How do you decide who to hire?
+### Command-Line Options
 
-We evaluate candidates based on three criteria:
+- `-n, --number <number>`: Number of top articles to fetch (default: 10).
+- `-o, --output <file>`: Output CSV file (default: `hackernewsTopTen.csv`).
 
-- Technical ability (as demonstrated in the take home and final round)
-- Customer service orientation (as this role is customer facing)
-- Alignment with our values (captured [here](https://www.notion.so/qawolf/QA-Wolf-QA-Engineer-Remote-156203a1e476459ea5e6ffca972d0efe))
+## Testing
 
-This means whether we hire you is based on how you do during our interview process, not on your previous experience (or lack thereof). Note that you will also need to pass a background check to work here as our customers require this.
+Unit tests are provided to ensure the script functions correctly. The tests use Mocha as the test framework, Chai for assertions, and Nock to mock API responses.
 
-### How can I help my application stand out?
+### Running Tests
 
-We've found that our best hires have been the most enthusiastic throughout our process. If you are very excited about working here, please feel free to go above and beyond on this assignment.
+To run the tests, use the following command:
+
+```bash
+npm test
+```
+
+## Project Structure
+
+- `index.js`: Main script file that fetches top stories from Hacker News and writes them to a CSV file.
+- `test.mjs`: Test file containing unit tests for the script.
+- `package.json`: Project metadata and dependencies.
+
+## Dependencies
+
+- [axios](https://github.com/axios/axios): Promise-based HTTP client for the browser and Node.js.
+- [csv-writer](https://github.com/ryu1kn/csv-writer): CSV writer library.
+- [commander](https://github.com/tj/commander.js/): Command-line interface library.
+- [mocha](https://mochajs.org/): JavaScript test framework for Node.js programs.
+- [chai](https://www.chaijs.com/): BDD / TDD assertion library for Node.js.
+- [nock](https://github.com/nock/nock): HTTP mocking and expectations library for Node.js.
+
+
+## Acknowledgments
+
+- The [Hacker News API](https://github.com/HackerNews/API) for providing access to Hacker News data.
+- The developers of [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/), and [Nock](https://github.com/nock/nock) for their excellent libraries.
